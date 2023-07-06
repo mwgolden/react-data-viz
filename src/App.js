@@ -1,14 +1,13 @@
 import './App.css';
-import './components/MyFirstChart'
-import MyFirstChart from './components/MyFirstChart';
+import DewPointHumidityScatter from './DewPointHumidityScatter';
 
 import weatherData from './data/my_weather_data.json'
 
 function App() {
 
   return (
-    <MyFirstChart weatherData={weatherData} />
-    
+    <DewPointHumidityScatter data={weatherData} />
+    //<MyFirstChart weatherData={weatherData} />
   )
 }
 
