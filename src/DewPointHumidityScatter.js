@@ -46,7 +46,9 @@ export default function DewPointHumidityScatter({ data }){
 
     return (
         <Chart dimensions={dimensions}>
-            <LeftAxis scales={scales} />
+            <LeftAxis scales={scales}>
+                <AxisTicks />
+            </LeftAxis>
             <ScatterPlot 
                 accessors={accessors}
                 scales={scales}
@@ -54,7 +56,7 @@ export default function DewPointHumidityScatter({ data }){
             />
             <BottomAxis scales={scales}>
                 <AxisTicks />
-                <Label dimensions={dimensions} label={'Dew Point (&deg;F)'} />
+                <Label dimensions={dimensions}>Dew Point (&deg;F)</Label>
             </BottomAxis>
         </Chart>
         
