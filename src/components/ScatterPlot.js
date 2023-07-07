@@ -1,8 +1,7 @@
-import Chart from './Chart'
 
 export default function ScatterPlot(props) {
 
-    const { dimensions, data } = props
+    const { data } = props
     const { xScale, yScale } = props.scales
     const { xAccessor, yAccessor } = props.accessors
 
@@ -16,8 +15,8 @@ export default function ScatterPlot(props) {
     })
 
     return (
-        <Chart dimensions={ dimensions }>
-            {dots}
-        </Chart>
+        <g>
+         {dots}
+        </g>
     )
 }
