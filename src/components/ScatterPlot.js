@@ -1,22 +1,27 @@
+import { useRef, useEffect } from "react"
+import { select } from "d3"
 
 export default function ScatterPlot(props) {
 
-    const { data } = props
-    const { xScale, yScale } = props.scales
-    const { xAccessor, yAccessor } = props.accessors
+    const scatterPlotRef = useRef()
 
-    const dots = data.map( (d, i) => {
-        return <circle 
-                    key={i}
-                    cx={xScale(xAccessor(d))}
-                    cy={yScale(yAccessor(d))}
-                    r={5}
-                />
-    })
+    const { data } = props.chart
+    const { xScale, yScale } = props.chart.scales
+    const { xAccessor, yAccessor } = props.chart.accessors
+
+    useEffect( () => {
+        const scatterPlot = select(scatterPlotRef.current)
+        const plot = scatterPlot.selectAll('circle').data(data)
+
+        plot.join('circle')
+            .attr('cx', d => xScale(xAccessor(d)))
+            .attr('cy', d => yScale(yAccessor(d)))
+            .attr('r', 5)
+            .attr('fill', 'black')
+        
+    }, [xScale, yScale, xAccessor, yAccessor, data])
 
     return (
-        <g>
-         {dots}
-        </g>
+        <g ref={scatterPlotRef}/>
     )
 }

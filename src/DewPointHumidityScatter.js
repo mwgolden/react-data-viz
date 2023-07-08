@@ -1,8 +1,7 @@
 import { min, extent, scaleLinear } from 'd3'
-import { BottomAxis, LeftAxis } from './components/Axis'
+import { BottomAxis, LeftAxis } from './components/Axes'
 import Chart from './components/Chart'
 import ScatterPlot from './components/ScatterPlot'
-import AxisTicks from './components/AxisTicks'
 import Label from './components/Label'
 
 export default function DewPointHumidityScatter({ data }){
@@ -41,21 +40,18 @@ export default function DewPointHumidityScatter({ data }){
                     .nice()
     }
 
-    
-    
+    const chartInfo = {
+        dimensions: dimensions,
+        accessors: accessors,
+        scales: scales,
+        data: data
+    }
 
     return (
-        <Chart dimensions={dimensions}>
-            <LeftAxis scales={scales}>
-                <AxisTicks />
-            </LeftAxis>
-            <ScatterPlot 
-                accessors={accessors}
-                scales={scales}
-                data={data}
-            />
-            <BottomAxis scales={scales}>
-                <AxisTicks />
+        <Chart chart={chartInfo}>
+            <LeftAxis />
+            <ScatterPlot />
+            <BottomAxis>
                 <Label dimensions={dimensions}>Dew Point (&deg;F)</Label>
             </BottomAxis>
         </Chart>
