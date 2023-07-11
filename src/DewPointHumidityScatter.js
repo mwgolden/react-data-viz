@@ -26,7 +26,8 @@ export default function DewPointHumidityScatter({ data }){
 
     const accessors = {
         yAccessor: d => d.dewPoint,
-        xAccessor: d => d.humidity
+        xAccessor: d => d.humidity,
+        colorAccessor: d => d.cloudCover
     }
 
     const scales = {
@@ -37,7 +38,10 @@ export default function DewPointHumidityScatter({ data }){
         yScale: scaleLinear()
                     .domain(extent(data, accessors.yAccessor))
                     .range([dimensions.boundedHeight, 0])
-                    .nice()
+                    .nice(),
+        colorScale: scaleLinear()
+                        .domain(extent(data, accessors.colorAccessor))
+                        .range(['skyblue', 'darkslategrey'])
     }
 
     const chartInfo = {

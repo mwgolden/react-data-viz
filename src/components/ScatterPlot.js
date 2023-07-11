@@ -6,8 +6,8 @@ export default function ScatterPlot(props) {
     const scatterPlotRef = useRef()
 
     const { data } = props.chart
-    const { xScale, yScale } = props.chart.scales
-    const { xAccessor, yAccessor } = props.chart.accessors
+    const { xScale, yScale, colorScale } = props.chart.scales
+    const { xAccessor, yAccessor, colorAccessor } = props.chart.accessors
 
     useEffect( () => {
         const scatterPlot = select(scatterPlotRef.current)
@@ -17,7 +17,7 @@ export default function ScatterPlot(props) {
             .attr('cx', d => xScale(xAccessor(d)))
             .attr('cy', d => yScale(yAccessor(d)))
             .attr('r', 5)
-            .attr('fill', 'black')
+            .attr('fill', d => colorScale(colorAccessor(d)))
         
     }, [xScale, yScale, xAccessor, yAccessor, data])
 
