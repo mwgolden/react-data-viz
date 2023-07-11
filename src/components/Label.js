@@ -1,8 +1,8 @@
 
 export default function Label(props) {
-    const { dimensions, children } = props
+    const { children, x, y, fill, fontSize, styles } = props
     return (
-        <text x={dimensions.boundedWidth / 2} y={dimensions.boundedHeight + dimensions.margin.bottom - 8} fill={'black'}>
+        <text style={styles} x={x} y={y} fill={fill} fontSize={fontSize}>
             {children}
         </text>
     )

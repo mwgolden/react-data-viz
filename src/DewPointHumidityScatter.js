@@ -49,10 +49,12 @@ export default function DewPointHumidityScatter({ data }){
 
     return (
         <Chart chart={chartInfo}>
-            <LeftAxis />
+            <LeftAxis>
+                <Label>Relative Humidity</Label>
+            </LeftAxis>
             <ScatterPlot />
             <BottomAxis>
-                <Label dimensions={dimensions}>Dew Point (&deg;F)</Label>
+                <Label>Dew Point (&deg;F)</Label>
             </BottomAxis>
         </Chart>
         

@@ -47,8 +47,20 @@ function BottomAxis(props){
     const { xScale } = props.chart.scales
     const dimensions = props.chart.dimensions
     const xAxisGenerator = axisBottom().scale(xScale)
-    
     const xAxisRef = useRef()
+
+    const styles = {
+    }
+    const childrenWithProps = React.Children.map(children, child => {
+        return React.cloneElement( child, {
+            x: dimensions.boundedWidth / 2,
+            y: dimensions.boundedHeight + 40,
+            fill: 'black',
+            fontSize: '0.75em',
+            styles: styles
+        })
+    })
+
     useEffect( () => {
         const xAxis = select(xAxisRef.current)
         xAxis.append('g')
@@ -58,7 +70,7 @@ function BottomAxis(props){
 
     return (
         <g ref={xAxisRef}>
-            {children}
+            {childrenWithProps}
         </g>
     )
 }
@@ -68,8 +80,22 @@ function LeftAxis(props){
     const { yScale } = props.chart.scales
     const dimensions = props.chart.dimensions
     const leftAxisGenerator = axisLeft().scale(yScale)
-    
     const leftAxisRef = useRef()
+
+    const styles = {
+        transform: 'rotate(-90deg)',
+        textAnchor: 'middle'
+    }
+    const childrenWithProps = React.Children.map(children, child => {
+        return React.cloneElement( child, {
+            x: -dimensions.boundedHeight / 2,
+            y: -dimensions.margin.left + 20,
+            fill: 'black',
+            fontSize: '0.75em',
+            styles: styles
+        })
+    })
+
     useEffect( () => {
         const leftAxis = select(leftAxisRef.current)
         leftAxis.append('g')
@@ -78,7 +104,7 @@ function LeftAxis(props){
 
     return (
         <g ref={leftAxisRef}>
-            {children}
+            {childrenWithProps}
         </g>
     )
 }
