@@ -1,13 +1,28 @@
 import './App.css';
-import DewPointHumidityScatter from './DewPointHumidityScatter';
+import Histograms from './Histograms'
 
 import weatherData from './data/my_weather_data.json'
 
+const histogramMetrics = [ 
+    'windSpeed', 
+    'humidity',
+    'moonPhase', 
+    'dewPoint',
+    'uvIndex',
+    'windBearing',
+    'temperatureMin',
+    'temperatureMax'
+  ]
 
 function App() {
 
   return (
-    <DewPointHumidityScatter data={weatherData} />
+    <>
+      
+      <div>
+        <Histograms metrics={histogramMetrics} data={weatherData} />
+      </div>
+    </>
   )
 }
 

@@ -48,9 +48,8 @@ function BottomAxis(props){
     const dimensions = props.chart.dimensions
     const xAxisGenerator = axisBottom().scale(xScale)
     const xAxisRef = useRef()
+    const styles = {}
 
-    const styles = {
-    }
     const childrenWithProps = React.Children.map(children, child => {
         return React.cloneElement( child, {
             x: dimensions.boundedWidth / 2,
